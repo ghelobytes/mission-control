@@ -1,1 +1,1 @@
-web: bundle exec ruby server.rb production -p $PORT
+web: bundle exec ruby endpoints.rb production -p $PORT

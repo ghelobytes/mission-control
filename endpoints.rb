@@ -5,7 +5,7 @@ $stdout.sync = true
 
 require 'sinatra'
 require 'redd/middleware'
-require './helper_functions'
+require './functions'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 

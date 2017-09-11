@@ -24,7 +24,7 @@ The following environment variables are expected to be set for ruby.
 
 ## Running the server
 
-To run the server, go to the repo directory and run `ruby server.rb`.
+To run the server, go to the repo directory and run `ruby endpoints.rb`.
 
 ## Development
 
@@ -60,34 +60,32 @@ All packages are located in the [`/public/js/packages`](https://github.com/r-spa
 All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules). The following modules currently exist, with the relevent exports.
 
 - [`ajax`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/ajax.js)
-    - `ajax.get()`
-    - `ajax.post()`
+    - `ajax.get(url, data)`
+    - `ajax.post(url, data)`
 - [`annyang`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/annyang.js)
     - `speechRecognition()`
 - [`auto-register`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/auto-register.js)
     - `autoRegisterDialog()`
 - [`captues`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/captures.js)
-    - `saveIfEnter()`
-    - `_tabEvent()`
-    - `setSign()`
+    - `saveIfEnter(event)`
+    - `_tabEvent(event, object)`
+    - `setSign(object)`
 - [`countdown`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/countdown.js)
     - `updateCountdown()`
-    - `setLaunchTime()`
-    - `insertTime()`
+    - `setLaunchTime(launchTime)`
+    - `insertTime(object)`
 - [`events`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/events.js)
     - `addEvent()`
     - `removeEvent()`
     - `addEventIfNeeded()`
 - [`hotswap`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/hotswap.js)
-    - `hotSwapVals` (implicit)
-    - `hotSwap()`
+    - `hotSwap(object)`
 - [`intervals`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/intervals.js)
     - `createIntervals()`
 - [`mde`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/mde.js)
     - `registerMDEs()`
 - [`messages`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/messages.js)
-    - `messages` (implicit)
-    - `emergency()`,
+    - `emergency(object)`
     - `std_message()`
 - [`reddit`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/reddit.js)
     - `async save()`
@@ -95,7 +93,7 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
     - `async createPost()`
     - `async updateStats()`
 - [`ui`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/ui.js)
-    - `showTab()`
+    - `showTab(object)`
     - `createSortable()`
     - `datetimeSupport()`
     - `removeLoadingModal()`

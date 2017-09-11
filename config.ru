@@ -1,3 +1,3 @@
 $stdout.sync = true
-require './server.rb'
+require './endpoints.rb'
 run Sinatra::Application
