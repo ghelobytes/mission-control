@@ -23,7 +23,7 @@ export async function saveEvents() {
         const children = evnt.children;
 
         if(children[1].getAttribute('data-content') == 'Posted') {
-            const tPM = children[3].value == '' ? '' : children[2].innerHTML + children[3].value;
+            const tPM = children[3].value === '' ? '' : children[2].innerHTML + children[3].value;
             const message = children[6].value;
             allEvents.push([tPM, message]);
         }

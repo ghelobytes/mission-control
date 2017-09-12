@@ -2,7 +2,8 @@ import { ajax } from './ajax';
 
 // updates the countdown timer based on launch time
 export function updateCountdown() {
-    if(window.time == null || window.hold_scrub == true)
+    // non-strict null check
+    if(window.time == null || window.hold_scrub === true)
         return;
 
     const pad = num => num < 10 ? `0${num}` : num;
@@ -21,22 +22,22 @@ export function updateCountdown() {
     const secs = diff % 60000 / 1000 | 0;
     const tenths = diff % 1000 / 100 | 0;
 
-    if(diff < 61000 && window.countdown_interval != 100) {  // <1 minute => 0.1 second
+    if(diff < 61000 && window.countdown_interval !== 100) {  // <1 minute => 0.1 second
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 100);
         window.countdown_interval = 100;
     }
-    else if(61000 <= diff && diff < 3660000 && window.countdown_interval != 1000) {  // 1 minute to 1 hour => 1 second
+    else if(61000 <= diff && diff < 3660000 && window.countdown_interval !== 1000) {  // 1 minute to 1 hour => 1 second
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 1000);
         window.countdown_interval = 1000;
     }
-    else if(3660000 <= diff && diff < 90000000 && window.countdown_interval != 60000) {  // 1 hour to 1 day => 1 minute
+    else if(3660000 <= diff && diff < 90000000 && window.countdown_interval !== 60000) {  // 1 hour to 1 day => 1 minute
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 60000);
         window.countdown_interval = 60000;
     }
-    else if(diff >= 90000000 && window.countdown_interval != 3600000) {  // >1 day => 1 hour
+    else if(diff >= 90000000 && window.countdown_interval !== 3600000) {  // >1 day => 1 hour
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 3600000);
         window.countdown_interval = 3600000;
@@ -58,10 +59,11 @@ export function updateCountdown() {
 
 // popup to ask for launch time (uses <dialog>)
 export function setLaunchTime(launchTime) {
+    // non-strict null check
     window.time = launchTime == null ? null : Date.parse(launchTime);
     window.hold_scrub = false;
 
-    // non-strict equality matches undefined
+    // non-strict null check
     if(window.time == null) {
         const timer = document.getElementById('timer');
         timer.innerHTML = 'Set launch time';
@@ -82,6 +84,7 @@ export function setLaunchTime(launchTime) {
 }
 
 export function insertTime(obj) {
+    // non-strict null check
     if(window.time != null) {
         const children = obj.parentElement.children;
         const time = document.getElementById('timer').innerHTML;

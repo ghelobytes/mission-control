@@ -32,5 +32,7 @@ export function hotSwap(obj) {
     const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
 
     const val = obj.value.replace(regex, key => hotSwapVals[key]);
-    if(obj.value !== val) obj.value = val;  // prevents moving cursor to end if not needed
+    if(obj.value !== val)
+        // prevents moving cursor to end if not needed
+        obj.value = val;
 }

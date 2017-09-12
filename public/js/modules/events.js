@@ -6,6 +6,7 @@ export function addEvent() {
     // firstElementChild is to prevent weird bugs, and we only have one child
     const row = document.importNode(template.content, true).firstElementChild;
 
+    // non-strict null check
     if(window.time != null && window.time > new Date())
         row.children[2].innerHTML = 'T-';
 

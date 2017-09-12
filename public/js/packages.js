@@ -1,4 +1,4 @@
-import './packages/simplemde';
-import './packages/dialog-polyfill';
-import './packages/sortable';
 import './packages/annyang';
+import './packages/dialog-polyfill';
+import './packages/simplemde';
+import './packages/sortable';

@@ -29,7 +29,7 @@ export function datetimeSupport() {
     // remove format in popup if <input type=datetime-local> is supported
     const elem = document.createElement('input');
     elem.setAttribute('type', 'datetime-local');
-    if(elem.type == 'datetime-local') {
+    if(elem.type === 'datetime-local') {
         const removing = document.getElementById('datetime-format');
         removing.parentElement.removeChild(removing);
     }
