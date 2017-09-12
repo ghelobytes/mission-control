@@ -22,12 +22,16 @@ export async function saveEvents() {
     for(const evnt of events) {
         const children = evnt.children;
 
-        if(children[1].getAttribute('data-content') == 'Posted') {
-            const tPM = children[3].value === '' ? '' : children[2].innerHTML + children[3].value;
-            const message = children[6].value;
-            allEvents.push([tPM, message]);
-        }
+        const posted = children[1].getAttribute('data-content') === 'Posted';
+        const tPM = children[3].value === '' ? '' : children[2].innerHTML + children[3].value.trim();
+        const message = children[6].value.trim();
+
+        if(message === '')
+            continue;
+
+        allEvents.push([posted, tPM, message]);
     }
+    console.log(allEvents);
 
     const data = await ajax.post('update', {
         id: 'events',

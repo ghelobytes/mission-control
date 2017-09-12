@@ -66,8 +66,9 @@ def format_events(events)
   return if events.nil?
   str = "| Time | Update |\n| --- | --- |"
   events.each do |event|
-    if event[1] == '' then next end # only display events with message
-    str += "\n| #{event[0]} | #{event[1]} |"
+    # only display events with message and that are designated as posted
+    next if event[2] == '' || !event[0]
+    str += "\n| #{event[1]} | #{event[2]} |"
   end
   str
 end
