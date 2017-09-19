@@ -22,7 +22,7 @@
         <h3 class=right>
             <span> <%# only here for row-reverse in flex %>
                 <%# various events %>
-                <select id=events-dropdown>
+                <select id=events-dropdown aria-label='Preset messages'>
                     <option>LOX loading started</option>
                     <option>LOX loading finished</option>
                     <option>RP-1 loading started</option>
@@ -75,17 +75,17 @@
                 <% next if event[2] == '' %>
                 <li class=reverse><i class=sort-icon></i>
                     <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='<%= event[0] ? "Posted" : "Hidden" %>'></span>
-                    <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
+                    <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);' aria-label=countdown>
                     <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                    <span>Message:</span> <input value='<%= event[2].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+                    <span>Message:</span> <input value='<%= event[2].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' aria-label=message>
             <% end %>
         <% else %>
         <%# nothing stored on server, give a single blank event %>
             <li class=reverse><i class=sort-icon></i>
                 <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
-                <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
+                <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);' aria-label=countdown>
                 <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+                <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' aria-label=message>
             </li>
         <% end %>
     </ul>
@@ -102,8 +102,8 @@
 <template id=event-template>
     <li class=hidden><i class=sort-icon></i>
         <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Hidden'></span>
-        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
+        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);' aria-label=countdown>
         <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-        <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+        <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' aria-label=message>
     </li>
 </template>

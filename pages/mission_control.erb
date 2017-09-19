@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
-<html>
-<head lang=en>
+<html lang=en>
+<head>
 	<title><%= session[:launch] %> | r/Spacex Mission Control</title>
 	<link rel=icon type=image/png href=/images/iss-16.png sizes=16x16>
 	<link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
 	<link rel=stylesheet href=css/all.css>
 	<script async src=https://platform.twitter.com/widgets.js></script>
 	<script src=js/all-packages.js></script>
-	<script src=js/all-modules.js></script>
+	<script async src=js/all-modules.js></script>
 	<%= if session[:time] then "<script>window.time = #{session[:time]}</script>" end %>
 	<%= if session[:noshow] then "<script>window.noshow = true</script>" end %>
 </head>
@@ -19,9 +19,9 @@
 	</div>
 
 	<% if session[:video] and session[:video] != '' %>
-		<iframe class=youtube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
+		<iframe class=youtube title=YouTube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
 	<% else %>
-		<iframe class=youtube src=''></iframe>
+		<iframe class=youtube title=YouTube src=''></iframe>
 	<% end %>
 
 	<section class=status>

@@ -4,7 +4,7 @@
   <%= post_info(session[:post])['html'] %>
 <% else %>
   <div class=flex>
-    <a href=# onclick=createPost() class='fa fa-upload'></a>
+    <a href=# onclick=createPost() class='fa fa-upload' title='Create blank post'></a>
     <a href=# onclick=createPost()><span>Create blank post</span></a>
   </div>
 <% end %>
