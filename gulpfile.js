@@ -58,20 +58,20 @@ const config = {
 //=============================================//
 
 gulp.task('sass', () => {
-    gulp.src(`${config.css_dir}/all.sass`)
+    return gulp.src(`${config.css_dir}/all.sass`)
         .pipe(sass(config.sass).on('error', sass.logError))
         .pipe(autoprefixer({browsers: config.browsers}))
         .pipe(gulp.dest(config.css_dir));
 });
 
 gulp.task('rollup-modules', () => {
-    rollup(config.js.modules)
+    return rollup(config.js.modules)
         .pipe(source(config.js_output.modules))
         .pipe(gulp.dest(config.js_dir.all));
 });
 
 gulp.task('rollup-packages', () => {
-    rollup(config.js.packages)
+    return rollup(config.js.packages)
         .pipe(source(config.js_output.packages))
         .pipe(gulp.dest(config.js_dir.all));
 });
@@ -79,7 +79,7 @@ gulp.task('rollup-packages', () => {
 gulp.task('js-modules', ['rollup-modules'], cb => {
     pump([
             gulp.src(`${config.js_dir.all}/${config.js_output.modules}`),
-            minify({}),
+            minify(config.uglify),
             gulp.dest(config.js_dir.all)
         ],
         cb

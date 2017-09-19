@@ -16,15 +16,13 @@ export function autoRegisterDialog() {
                 [].forEach.call(
                     mutation.addedNodes,
                     node => {
-                        if(node.nodeName.toLowerCase() === tag) {
+                        if(node.nodeName.toLowerCase() === tag)
                             fn(node);
-                        }
-                        else if(node.getElementsByTagName) {
+                        else if(node.getElementsByTagName)
                             [].forEach.call(
                                 node.getElementsByTagName(tag),
                                 fn
                             );
-                        }
                     }
                 );
             });

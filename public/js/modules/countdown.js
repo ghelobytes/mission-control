@@ -6,21 +6,17 @@ export function updateCountdown() {
     if(window.time == null || window.hold_scrub === true)
         return;
 
-    const pad = num => num < 10 ? `0${num}` : num;
-
     const timer = document.getElementById('timer');
 
     const curTime = new Date();
-    const launchTime = window.time;
-    const diff = Math.abs(launchTime - curTime);
+    const diff = Math.abs(window.time - curTime);
+    const sign = window.time > curTime ? '-' : '+';
 
-    const sign = launchTime > curTime ? '-' : '+';
-
-    const days = diff / 86400000 | 0;
-    const hours = diff % 86400000 / 3600000 | 0;
-    const mins = diff % 3600000 / 60000 | 0;
-    const secs = diff % 60000 / 1000 | 0;
-    const tenths = diff % 1000 / 100 | 0;
+    const days   = diff            / 86400000 | 0;
+    const hours  = diff % 86400000 /  3600000 | 0;
+    const mins   = diff %  3600000 /    60000 | 0;
+    const secs   = diff %    60000 /     1000 | 0;
+    const tenths = diff %     1000 /      100 | 0;
 
     if(diff < 61000 && window.countdown_interval !== 100) {  // <1 minute => 0.1 second
         clearInterval(window.countdown);
@@ -50,7 +46,7 @@ export function updateCountdown() {
     else if(hours > 0)
         time = `${hours}h ${mins}m`;
     else if(mins > 0)
-        time = `${mins}:${pad(secs)}`;
+        time = `${mins}:${secs.padStart(2, '0')}`;
     else
         time = `${secs}.${tenths}`;
 

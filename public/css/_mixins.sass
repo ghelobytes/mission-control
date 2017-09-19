@@ -34,49 +34,33 @@
     min-height: $min
     max-height: $max
 
-=padding($top: null, $right: $top, $bottom: $top, $left: $right)
+=_padding_margin($type, $top, $right, $bottom, $left)
     $list: $top, $right, $bottom, $left
     $num-null: num-null($list)
 
     @if $num-null != 0
-        padding-top: $top
-        padding-right: $right
-        padding-bottom: $bottom
-        padding-left: $left
+        #{$type}-top: $top
+        #{$type}-right: $right
+        #{$type}-bottom: $bottom
+        #{$type}-left: $left
 
     @else if $top == $right and $right == $bottom and $bottom == $left
-        padding: $top
+        #{$type}: $top
 
     @else if $top == $bottom and $left == $right
-        padding: $top $right
+        #{$type}: $top $right
 
     @else if $top != $bottom and $left == $right
-        padding: $top $right $bottom
+        #{$type}: $top $right $bottom
 
     @else
-        padding: $top $right $bottom $left
+        #{$type}: $top $right $bottom $left
+
+=padding($top: null, $right: $top, $bottom: $top, $left: $right)
+    +_padding_margin("padding", $top, $right, $bottom, $left)
 
 =margin($top: null, $right: $top, $bottom: $top, $left: $right)
-    $list: $top, $right, $bottom, $left
-    $num-null: num-null($list)
-
-    @if $num-null != 0
-        margin-top: $top
-        margin-right: $right
-        margin-bottom: $bottom
-        margin-left: $left
-
-    @else if $top == $right and $right == $bottom and $bottom == $left
-        margin: $top
-
-    @else if $top == $bottom and $left == $right
-        margin: $top $right
-
-    @else if $top != $bottom and $left == $right
-        margin: $top $right $bottom
-
-    @else
-        margin: $top $right $bottom $left
+    +_padding_margin("margin", $top, $right, $bottom, $left)
 
 =size($width, $height: $width, $padding: null, $margin: null)
     +width($width...)

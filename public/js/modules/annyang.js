@@ -51,7 +51,12 @@ export function speechRecognition() {
         document.getElementById('mic').classList.add(slash ? 'fa-microphone-slash' : 'fa-microphone');
     }
 
-    const commands = {
+    annyang.addCallback('soundstart', () => _mic(false));
+    annyang.addCallback('result', () => _mic(true));
+    annyang.addCallback('error', () => _mic(true));
+    annyang.addCallback('end', () => _mic(true));
+
+    annyang.addCommands({
         'show all': () => document.getElementById('tabs').children[0].click(),
         'show events': () => document.getElementById('tabs').children[1].click(),
         'show section': () => document.getElementById('tabs').children[2].click(),
@@ -73,13 +78,6 @@ export function speechRecognition() {
         'logout': () => window.location = '/logout',
         'sign out': () => window.location = '/logout',
         '(switch) (flip) interface': () => document.body.classList.toggle('interface-left')
-    }
-
-    annyang.addCallback('soundstart', () => _mic(false));
-    annyang.addCallback('result', () => _mic(true));
-    annyang.addCallback('error', () => _mic(true));
-    annyang.addCallback('end', () => _mic(true));
-
-    annyang.addCommands(commands);
+    });
     annyang.start();
 }

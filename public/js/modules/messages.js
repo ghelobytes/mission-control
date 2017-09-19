@@ -2,44 +2,9 @@ import { addEvent } from './events';
 import { saveEvents } from './reddit';
 
 const messages = {
-    emergency: {
-        'RUD':   'RUD',
-        'Hold':  'Hold',
-        'Scrub': 'Scrub'
-    },
-    standard: {
-        'LOX loading started':   'LOX loading started',
-        'LOX loading finished':  'LOX loading finished',
-        'RP-1 loading started':  'RP-1 loading started',
-        'RP-1 loading finished': 'RP-1 loading finished',
-        'Statup (T-60)':         'Startup',
-        'Liftoff':               'Liftoff',
-        'Max Q':                 'Max Q',
-        'MECO':                  'MECO',
-        'Stage separation':      'Stage separation',
-        'Second stage ignition': 'Second stage ignition',
-        'Boostback startup':     'Boostback startup',
-        'Boostback shutdown':    'Boostback shutdown',
-        'Fairing separation':    'Fairing separation',
-        'Reentry startup':       'Reentry startup',
-        'Reentry shutdown':      'Reentry shutdown',
-        'Landing startup':       'Landing startup',
-        'First stage transonic': 'First stage transonic',
-        'Landing success':       'Landing success',
-        'Landing failure':       'Landing failure',
-        'SECO':                  'SECO',
-        'Second stage relight':  'Second stage relight',
-        'SECO2':                 'SECO2',
-        'Dragon deploy':         'Dragon deploy',
-        'Payload deploy':        'Payload deploy',
-        'Launch success':        'Launch success',
-        'Launch failure':        'Launch failure',
-        'Launch director poll':  'Launch director poll',
-        'Launch director "go"':  'Launch director "go"',
-        'Pressure OK':           'Pressure OK',
-        'Ignition':              'Ignition',
-        'Tower cleared':         'Tower cleared'
-    }
+    'RUD':   'RUD',
+    'Hold':  'Hold',
+    'Scrub': 'Scrub'
 };
 
 // messages from emergency panel
@@ -54,19 +19,19 @@ export function emergency(obj) {
     if(time.substr(-2, 1) === '.')
         time = time.slice(0, -2);
 
+    // non-strict null check
     if(window.time != null) {
         children[3].innerHTML = time.slice(0, 2);
-        children[4].value = time.substr(-2, 1) == '.' ? time.slice(2, -2) : time.slice(2);
+        children[4].value = time.substr(-2, 1) === '.' ? time.slice(2, -2) : time.slice(2);
     }
 
     children[1].setAttribute('data-content', 'Posted');
-    children[6].value = messages.emergency[type];
+    children[6].value = messages[type];
     saveEvents();
 }
 
 // messages from standard panel
 export function std_message() {
     const child = addEvent().children[6];
-    const key = document.getElementById('events-dropdown').value;
-    child.value = messages.standard[key];
+    child.value = document.getElementById('events-dropdown').value;
 }

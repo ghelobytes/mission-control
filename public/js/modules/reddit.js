@@ -31,15 +31,13 @@ export async function saveEvents() {
 
         allEvents.push([posted, tPM, message]);
     }
-    console.log(allEvents);
 
-    const data = await ajax.post('update', {
+    document.querySelector('.reddit').innerHTML = await ajax.post('update', {
         id: 'events',
         value: allEvents
     });
 
     document.querySelector('.tab-events .fa-upload').classList.add('highlight');
-    document.querySelector('.reddit').innerHTML = data;
 }
 
 // create empty post
@@ -52,6 +50,5 @@ export async function createPost() {
 
 // gets status page and updates section
 export async function updateStats() {
-    const data = await ajax.get('status');
-    document.getElementById('status-liveupdate').innerHTML = data;
+    document.getElementById('status-liveupdate').innerHTML = await ajax.get('status');
 }

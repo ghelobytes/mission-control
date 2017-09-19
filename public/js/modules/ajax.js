@@ -34,7 +34,7 @@ export const ajax = {
             for(const key in data)
                 query.push(`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`);
 
-            if(method === 'post')
+            if(method.toLowerCase() === 'post')
                 req.send(JSON.stringify(data));
             else
                 req.send(`'?${query.join('&')}`);

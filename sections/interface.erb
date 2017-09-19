@@ -27,7 +27,7 @@
                     <option>LOX loading finished</option>
                     <option>RP-1 loading started</option>
                     <option>RP-1 loading finished</option>
-                    <option>Statup (T-60)</option>
+                    <option value=Startup>Statup (T-60)</option>
                     <option>Liftoff</option>
                     <option>Max Q</option>
                     <option>MECO</option>
@@ -70,18 +70,14 @@
 
     <ul id=events>
         <%# fetch from server if possible  %>
-        <% if session[:events] %>
-            <% if session[:events] != nil %>
-                <% session[:events].each do |event| %>
-                    <% puts event %>
-                    <%# event = event[2] %>
-                    <% if event[2] == '' then next end %>
-                    <li class=reverse><i class=sort-icon></i>
-                        <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='<%= event[0] ? "Posted" : "Hidden" %>'></span>
-                        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
-                        <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                        <span>Message:</span> <input value='<%= event[2].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
-                <% end %>
+        <% if session[:events] && session[:events] != nil && session[:events].length > 0 %>
+            <% session[:events].each do |event| %>
+                <% next if event[2] == '' %>
+                <li class=reverse><i class=sort-icon></i>
+                    <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='<%= event[0] ? "Posted" : "Hidden" %>'></span>
+                    <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
+                    <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
+                    <span>Message:</span> <input value='<%= event[2].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
             <% end %>
         <% else %>
         <%# nothing stored on server, give a single blank event %>
