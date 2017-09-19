@@ -6,8 +6,8 @@
 	<link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
 	<link rel=stylesheet href=css/all.css>
 	<script async src=https://platform.twitter.com/widgets.js></script>
-	<script src=js/all-packages.js></script>
-	<script async src=js/all-modules.js></script>
+	<script defer src=js/all-packages.js></script>
+	<script defer src=js/all-modules.js></script>
 	<%= if session[:time] then "<script>window.time = #{session[:time]}</script>" end %>
 	<%= if session[:noshow] then "<script>window.noshow = true</script>" end %>
 </head>
