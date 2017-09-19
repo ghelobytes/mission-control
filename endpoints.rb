@@ -9,6 +9,7 @@ require './functions'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 
+use Rack::Deflater # gzip assets
 use Rack::Session::Pool, # identifier that points to session data
   expire_after: 60 * 60 * 24 * 7 # one week
 
