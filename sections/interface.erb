@@ -4,7 +4,6 @@
     <li onclick=showTab(this)>Sections</li>
 </ul>
 
-
 <section class=tab-section>
     <textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
     <textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>

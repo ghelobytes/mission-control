@@ -12,7 +12,7 @@ export function registerMDEs() {
                   className: 'fa fa-upload',
                   title: 'Save to reddit'
                 },
-                '|', 'bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|', 'guide'],
+                '|', 'bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule'],
             promptURLs: true,
             status: false,
             forceSync: true,

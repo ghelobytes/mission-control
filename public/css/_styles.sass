@@ -432,8 +432,14 @@ dialog
     p
         text-align: justify
 
-    button
-        @extend input
+    button   
+        color: #000
+        +border(1px solid #ddd 3px)
+        background: transparent
+        padding: 2px
+        outline-color: $spx-blue-alpha
+        +fonts
+
         display: block
         +size(null, null, 0.5rem, 0 auto)
         transition: background 100ms ease-in
@@ -450,6 +456,10 @@ dialog
 
             &:not(:last-of-type)
                 margin-right: 1rem
+
+        input
+            display: block
+            margin: 1rem auto
 
 // custom scrollbar in browsers that support it
 ::-webkit-scrollbar-track

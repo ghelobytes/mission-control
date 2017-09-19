@@ -8,8 +8,8 @@
 	<script async src=https://platform.twitter.com/widgets.js></script>
 	<script defer src=js/all-packages.js></script>
 	<script defer src=js/all-modules.js></script>
-	<%= if session[:time] then "<script>window.time = #{session[:time]}</script>" end %>
-	<%= if session[:noshow] then "<script>window.noshow = true</script>" end %>
+	<%= if session[:time] then "<script async>window.time = #{session[:time]}</script>" end %>
+	<%= if session[:noshow] then "<script async>window.noshow = true</script>" end %>
 </head>
 <body>
 	<div id=loader class=loader>
@@ -44,8 +44,8 @@
 			<i id=info-button class='fa fa-info-circle' onclick='document.getElementById("info").showModal()' title='Show intro message'></i>
 			<i id=mic class='fa fa-microphone-slash' title='Voice control status'></i>
 			<i id=youtube-button class='fa fa-youtube-play' onclick='setYoutube()' title='Set YouTube video'></i>
-			<a target=_blank href=https://github.com/r-spacex/mission-control/issues id=bugs><i class='fa fa-bug' title='Report a bug'></i></a>
-			<a target=_blank href=https://github.com/r-spacex/mission-control id=github><i class='fa fa-github' title='GitHub'></i></a>
+			<a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control/issues id=bugs><i class='fa fa-bug' title='Report a bug'></i></a>
+			<a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control id=github><i class='fa fa-github' title='GitHub'></i></a>
 			<a href=logout id=logout><i class='fa fa-sign-out' title='Sign out'></i></a>
 		</span>
 		<%= render_erb 'sections/interface' %>
@@ -56,25 +56,24 @@
 	<section class='timer unset' id=timer onclick='document.getElementById("launchTime").showModal()'>Set launch time</section>
 
 	<section class=twitter>
-		<a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true	data-link-color=#005288 href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
+		<a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true	data-link-color=#005288 rel=noopener href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
 	</section>
 
 	<dialog id=info><%= render_erb 'sections/info' %></dialog>
 
 	<dialog id=launchTime>
 		<h2>Enter the launch time</h2>
-		<span id=datetime-format>(YYYY-MM-DD HH:MM:SS)<br></span> <%# only gets rendered if browser doesn't support datetime-local %>
+		<div id=datetime-format>(YYYY-MM-DD HH:MM:SS)</div> <%# only gets rendered if browser doesn't support datetime-local %>
 		(in your timezone)
-		<br><br>
 
-		<input type=datetime-local id=datetime step=1><br><br> <%# step=1 displays seconds %>
+		<input type=datetime-local id=datetime step=1> <%# step=1 displays seconds %>
 		<button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
 		<button onclick='setLaunchTime(null)'>Clear timer</button>
 	</dialog>
 
 	<dialog id=yt-dialog>
 		<h2>Enter YouTube link to webcast</h2>
-		<input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'><br><br>
+		<input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'>
 		<button class=clear>Clear</button>
 		<button class=update>Update</button>
 	</dialog>
