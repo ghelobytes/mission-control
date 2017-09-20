@@ -1,10 +1,10 @@
-import { ajax } from './ajax';
+import { request } from './fetch';
 
 // save a certain section to reddit
 export async function save() {
     const elem = arguments[0].element;
 
-    const data = await ajax.post('update', {
+    const data = await request.post('update', {
         id: elem.id,
         value: elem.value
     });
@@ -32,7 +32,7 @@ export async function saveEvents() {
         allEvents.push([posted, tPM, message]);
     }
 
-    document.querySelector('.reddit').innerHTML = await ajax.post('update', {
+    document.querySelector('.reddit').innerHTML = await request.post('update', {
         id: 'events',
         value: allEvents
     });
@@ -42,7 +42,7 @@ export async function saveEvents() {
 
 // create empty post
 export async function createPost() {
-    await ajax.get('update/create');
+    await request.get('update/create');
 
     // blank post, let's show this
     document.querySelector('.reddit').innerHTML = '<div class=flex><span class=greyed-out>[empty post]</span></div>';
@@ -50,5 +50,5 @@ export async function createPost() {
 
 // gets status page and updates section
 export async function updateStats() {
-    document.getElementById('status-liveupdate').innerHTML = await ajax.get('status');
+    document.getElementById('status-liveupdate').innerHTML = await request.get('status');
 }

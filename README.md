@@ -59,9 +59,6 @@ All packages are located in the [`/public/js/packages`](https://github.com/r-spa
 
 All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules). The following modules currently exist, with the relevent exports.
 
-- [`ajax`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/ajax.js)
-    - `ajax.get(url, data)`
-    - `ajax.post(url, data)`
 - [`annyang`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/annyang.js)
     - `speechRecognition()`
 - [`auto-register`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/auto-register.js)
@@ -78,6 +75,9 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
     - `addEvent()`
     - `removeEvent()`
     - `addEventIfNeeded()`
+- [`fetch`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/fetch.js)
+    - `request.get(url, data)`
+    - `request.post(url, data)`
 - [`hotswap`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/hotswap.js)
     - `hotSwap(object)`
 - [`intervals`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/intervals.js)

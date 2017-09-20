@@ -1,4 +1,4 @@
-import { ajax } from './ajax';
+import { request } from './fetch';
 
 // updates the countdown timer based on launch time
 export function updateCountdown() {
@@ -73,7 +73,7 @@ export function setLaunchTime(launchTime) {
     document.getElementById('launchTime').close();
 
     // not awaiting anything
-    ajax.post('update', {
+    request.post('update', {
         id: 'time',
         value: window.time
     });
