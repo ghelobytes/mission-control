@@ -1,81 +1,81 @@
 <!DOCTYPE HTML>
 <html lang=en>
 <head>
-	<title><%= session[:launch] %> | r/Spacex Mission Control</title>
-	<link rel=icon type=image/png href=/images/iss-16.png sizes=16x16>
-	<link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
-	<link rel=stylesheet href=css/all.css>
-	<script async src=https://platform.twitter.com/widgets.js></script>
-	<script defer src=js/all-packages.js></script>
-	<script defer src=js/all-modules.js></script>
-	<%= if session[:time] then "<script async>window.time = #{session[:time]}</script>" end %>
-	<%= if session[:noshow] then "<script async>window.noshow = true</script>" end %>
+    <title><%= session[:launch] %> | r/Spacex Mission Control</title>
+    <link rel=icon type=image/png href=/images/iss-16.png sizes=16x16>
+    <link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
+    <link rel=stylesheet href=css/all.css>
+    <script async src=https://platform.twitter.com/widgets.js></script>
+    <script defer src=js/all-packages.js></script>
+    <script defer src=js/all-modules.js></script>
+    <%= if session[:time] then "<script async>window.time = #{session[:time]}</script>" end %>
+    <%= if session[:noshow] then "<script async>window.noshow = true</script>" end %>
 </head>
 <body>
-	<div id=loader class=loader>
-		<% for _ in 1..6 %>
-			<div></div>
-		<% end %>
-	</div>
+    <div id=loader class=loader>
+        <% for _ in 1..6 %>
+            <div></div>
+        <% end %>
+    </div>
 
-	<% if session[:video] and session[:video] != '' %>
-		<iframe class=youtube title=YouTube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
-	<% else %>
-		<iframe class=youtube title=YouTube src=''></iframe>
-	<% end %>
+    <% if session[:video] and session[:video] != '' %>
+        <iframe class=youtube title=YouTube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
+    <% else %>
+        <iframe class=youtube title=YouTube src=''></iframe>
+    <% end %>
 
-	<section class=status>
-		<a href=# onclick='document.body.classList.toggle("interface-left")'>
-			<img id=interface-right src=https://img.shields.io/badge/interface-right-grey.svg alt='interface right'>
-			<img id=interface-left src=https://img.shields.io/badge/interface-left-grey.svg alt='interface left'>
-		</a>
+    <section class=status>
+        <a href=# onclick='document.body.classList.toggle("interface-left")'>
+            <img id=interface-right src=https://img.shields.io/badge/interface-right-grey.svg alt='interface right'>
+            <img id=interface-left src=https://img.shields.io/badge/interface-left-grey.svg alt='interface left'>
+        </a>
 
-		<span id=status-liveupdate> <%# allow updates via AJAX later %>
-			<%= render_erb 'sections/status' %>
-		</span>
-	</section>
+        <span id=status-liveupdate> <%# allow updates via AJAX later %>
+            <%= render_erb 'sections/status' %>
+        </span>
+    </section>
 
-	<section class=reddit>
-		<%= render_erb 'sections/live_post' %>
-	</section>
+    <section class=reddit>
+        <%= render_erb 'sections/live_post' %>
+    </section>
 
-	<section class=interface>
-		<span class=icons>
-			<i id=info-button class='fa fa-info-circle' onclick='document.getElementById("info").showModal()' title='Show intro message'></i>
-			<i id=mic class='fa fa-microphone-slash' title='Voice control status'></i>
-			<i id=youtube-button class='fa fa-youtube-play' onclick='setYoutube()' title='Set YouTube video'></i>
-			<a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control/issues id=bugs><i class='fa fa-bug' title='Report a bug'></i></a>
-			<a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control id=github><i class='fa fa-github' title='GitHub'></i></a>
-			<a href=logout id=logout><i class='fa fa-sign-out' title='Sign out'></i></a>
-		</span>
-		<%= render_erb 'sections/interface' %>
-	</section>
+    <section class=interface>
+        <span class=icons>
+            <i id=info-button class='fa fa-info-circle' onclick='document.getElementById("info").showModal()' title='Show intro message'></i>
+            <i id=mic class='fa fa-microphone-slash' title='Voice control status'></i>
+            <i id=youtube-button class='fa fa-youtube-play' onclick='setYoutube()' title='Set YouTube video'></i>
+            <a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control/issues id=bugs><i class='fa fa-bug' title='Report a bug'></i></a>
+            <a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control id=github><i class='fa fa-github' title='GitHub'></i></a>
+            <a href=logout id=logout><i class='fa fa-sign-out' title='Sign out'></i></a>
+        </span>
+        <%= render_erb 'sections/interface' %>
+    </section>
 
-	<section class=logo></section>
+    <section class=logo></section>
 
-	<section class='timer unset' id=timer onclick='document.getElementById("launchTime").showModal()'>Set launch time</section>
+    <section class='timer unset' id=timer onclick='document.getElementById("launchTime").showModal()'>Set launch time</section>
 
-	<section class=twitter>
-		<a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true	data-link-color=#005288 rel=noopener data-tweet-limit=10 href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
-	</section>
+    <section class=twitter>
+        <a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true    data-link-color=#005288 rel=noopener data-tweet-limit=10 href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
+    </section>
 
-	<dialog id=info><%= render_erb 'sections/info' %></dialog>
+    <dialog id=info><%= render_erb 'sections/info' %></dialog>
 
-	<dialog id=launchTime>
-		<h2>Enter the launch time</h2>
-		<div id=datetime-format>(YYYY-MM-DD HH:MM:SS)</div> <%# only gets rendered if browser doesn't support datetime-local %>
-		(in your timezone)
+    <dialog id=launchTime>
+        <h2>Enter the launch time</h2>
+        <div id=datetime-format>(YYYY-MM-DD HH:MM:SS)</div> <%# only gets rendered if browser doesn't support datetime-local %>
+        (in your timezone)
 
-		<input type=datetime-local id=datetime step=1> <%# step=1 displays seconds %>
-		<button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
-		<button onclick='setLaunchTime(null)'>Clear timer</button>
-	</dialog>
+        <input type=datetime-local id=datetime step=1> <%# step=1 displays seconds %>
+        <button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
+        <button onclick='setLaunchTime(null)'>Clear timer</button>
+    </dialog>
 
-	<dialog id=yt-dialog>
-		<h2>Enter YouTube link to webcast</h2>
-		<input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'>
-		<button class=clear>Clear</button>
-		<button class=update>Update</button>
-	</dialog>
+    <dialog id=yt-dialog>
+        <h2>Enter YouTube link to webcast</h2>
+        <input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'>
+        <button class=clear>Clear</button>
+        <button class=update>Update</button>
+    </dialog>
 </body>
 </html>

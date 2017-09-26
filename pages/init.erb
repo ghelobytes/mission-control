@@ -1,41 +1,41 @@
 <!DOCTYPE HTML>
 <html lang=en>
 <head>
-	<title>r/Spacex Mission Control</title>
-	<link rel=icon type=image/png href=/images/iss-16.png sizes=16x16>
-	<link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
-	<link rel=stylesheet href=/css/all.css>
+    <title>r/Spacex Mission Control</title>
+    <link rel=icon type=image/png href=/images/iss-16.png sizes=16x16>
+    <link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
+    <link rel=stylesheet href=/css/all.css>
 </head>
 <body class=init>
 
-	<img src=images/logo.png alt='SpaceX Mission Control'>
+    <img src=images/logo.png alt='SpaceX Mission Control'>
 
-	<form method=POST>
-		<table>
-			<tr>
-				<td>Launch</td>
-				<td>
-					<% launches = upcoming_launches %>
-					<% if launches.keys.include? 'error' %>
-						<input name=launch required placeholder='Required, not changeable'>
-					<% else %>
-						<select name=launch required>
-							<% launches.each do |launch, time| %>
-								<option value='<%= launch.gsub("'", '&apos;') + '|' + time %>'><%= launch %></option>
-							<% end %>
-						</select>
-					<% end %>
-				</td>
-			</tr>
-			<tr>
-				<td>YouTube link</td>
-				<td><input name=video type=url pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})' placeholder='Not required, changeable' <%= if session[:video] then "value='#{session[:video]}'" end %>></td>
-			</tr>
-			<tr>
-				<td colspan=2><input type=submit value="Ok, let's go!"></td>
-			</tr>
-		</table>
-	</form>
+    <form method=POST>
+        <table>
+            <tr>
+                <td>Launch</td>
+                <td>
+                    <% launches = upcoming_launches %>
+                    <% if launches.keys.include? 'error' %>
+                        <input name=launch required placeholder='Required, not changeable'>
+                    <% else %>
+                        <select name=launch required>
+                            <% launches.each do |launch, time| %>
+                                <option value='<%= launch.gsub("'", '&apos;') + '|' + time %>'><%= launch %></option>
+                            <% end %>
+                        </select>
+                    <% end %>
+                </td>
+            </tr>
+            <tr>
+                <td>YouTube link</td>
+                <td><input name=video type=url pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})' placeholder='Not required, changeable' <%= if session[:video] then "value='#{session[:video]}'" end %>></td>
+            </tr>
+            <tr>
+                <td colspan=2><input type=submit value="Ok, let's go!"></td>
+            </tr>
+        </table>
+    </form>
 
 </body>
 </html>
