@@ -2,6 +2,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const composer = require('gulp-uglify/composer');
 const gulp = require('gulp');
 const pump = require('pump');
+const purify = require('gulp-purifycss');
 const rollup = require('rollup-stream');
 const sass = require('gulp-sass');
 const source = require('vinyl-source-stream');
@@ -25,33 +26,47 @@ const config = {
         modules: 'all-modules.js',
         packages: 'all-packages.js'
     },
+    html_dir: 'pages',
+    section_dir: 'sections',
 
     // plugin configuration
-    browsers: ['ie 11'],  // added to later
+    autoprefixer: {
+        browsers: ['ie 11'],  // added to later
+        remove: false,  // we don't have legacy CSS
+    },
+    purifycss: {
+        content: [
+            'public/js/all-modules.js',
+            'public/js/all-packages.js',
+            'pages/**/*.erb',
+            'sections/**/*.erb',
+        ],
+        options: {
+            minify: true,
+        },
+    },
     sass: {
         indentedSyntax: true,  // Sass, not SCSS
-        outputStyle: 'compressed',
     },
     js: {
         modules: {
             entry: 'public/js/modules.js',
             format: 'cjs',
-            treeshake: false // breaks some things
+            treeshake: false  // breaks some things
         },
         packages: {
             entry: 'public/js/packages.js',
             format: 'cjs'
-        }
+        },
     },
     uglify: {
         mangle: true,
         compress: true
-    }
+    },
 };
 
 // more readable than listing them all out in full
-// don't care about mobile for this specific project
-['chrome', 'ff', 'safari', 'opera', 'edge'].forEach(browser => config.browsers.push(`last 2 ${browser} versions`));
+['chrome', 'ff', 'safari', 'opera', 'edge'].forEach(browser => config.autoprefixer.browsers.push(`last 2 ${browser} versions`));
 
 //=============================================//
 //                    TASKS                    //
@@ -60,7 +75,8 @@ const config = {
 gulp.task('sass', () => {
     return gulp.src(`${config.css_dir}/all.sass`)
         .pipe(sass(config.sass).on('error', sass.logError))
-        .pipe(autoprefixer({browsers: config.browsers}))
+        .pipe(purify(config.purifycss.content, config.purifycss.options))
+        .pipe(autoprefixer(config.autoprefixer))
         .pipe(gulp.dest(config.css_dir));
 });
 
@@ -89,6 +105,8 @@ gulp.task('js-modules', ['rollup-modules'], cb => {
 gulp.task('watch', () => {
     gulp.watch(`${config.css_dir}/**/*.sass`, ['sass']);
     gulp.watch(`${config.css_dir}/**/*.scss`, ['sass']);
+    gulp.watch(`${config.html_dir}/**/*.erb`, ['sass']);
+    gulp.watch(`${config.section_dir}/**/*.erb`, ['sass']);
     gulp.watch([`${config.js_dir.modules}/**/*.js`, config.js.modules.entry], ['js-modules']);
     gulp.watch([`${config.js_dir.packages}/**/*.js`, config.js.packages.entry], ['rollup-packages']);
 });
