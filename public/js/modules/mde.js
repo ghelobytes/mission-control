@@ -1,6 +1,6 @@
 import { save } from './reddit';
 
-export function registerMDEs() {
+window.addEventListener('load', () => {
     // register textareas as Markdown editor
     document.querySelectorAll('textarea').forEach(obj => {
         new SimpleMDE({
@@ -22,4 +22,4 @@ export function registerMDEs() {
 
     // MDE animation handler
     document.querySelectorAll('.fa-upload').forEach(obj => obj.animationend = () => obj.classList.remove('highlight'));
-}
+});

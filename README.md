@@ -62,7 +62,6 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
 - [`annyang`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/annyang.js)
     - `speechRecognition()`
 - [`auto-register`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/auto-register.js)
-    - `autoRegisterDialog()`
 - [`captues`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/captures.js)
     - `saveIfEnter(event)`
     - `_tabEvent(event, object)`
@@ -81,7 +80,6 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
 - [`hotswap`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/hotswap.js)
     - `hotSwap(object)`
 - [`intervals`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/intervals.js)
-    - `createIntervals()`
 - [`mde`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/mde.js)
     - `registerMDEs()`
 - [`messages`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/messages.js)
