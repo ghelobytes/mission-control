@@ -50,6 +50,7 @@ export function updateCountdown() {
     else
         time = `${secs}.${tenths}`;
 
+    timer.classList.remove('unset');
     timer.innerHTML = `T${sign}${time}`;
 }
 
