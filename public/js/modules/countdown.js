@@ -46,7 +46,7 @@ export function updateCountdown() {
     else if(hours > 0)
         time = `${hours}h ${mins}m`;
     else if(mins > 0)
-        time = `${mins}:${secs.padStart(2, '0')}`;
+        time = `${mins}:${secs.toString().padStart(2, '0')}`;
     else
         time = `${secs}.${tenths}`;
 

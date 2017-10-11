@@ -11,16 +11,20 @@ end
 
 # fully formatted markdown post
 def reddit_post
+  str = "#{session[:intro]}\n\n"
+
   if session[:events]
-    "#{session[:intro]}\n\n#{session[:viewing]}\n\n### Live Updates
-    \n#{format_events session[:events]}\n\n#{session[:stats]}
-    \n#{session[:mission]}\n\n#{session[:landing]}\n\n#{session[:resources]}
-    \n#{session[:participate]}"
-  else
-    "#{session[:intro]}\n\n#{session[:viewing]}\n\n#{session[:stats]}
-    \n#{session[:mission]}\n\n#{session[:landing]}\n\n#{session[:resources]}
-    \n#{session[:participate]}"
+    str += "### Live Updates\n\n#{format_events session[:events]}\n\n"
   end
+
+  str += "#{session[:viewing]}\n\n"
+  str += "#{session[:stats]}\n\n"
+  str += "#{session[:mission]}\n\n"
+  str += "#{session[:landing]}\n\n"
+  str += "#{session[:resources]}\n\n"
+  str += "#{session[:participate]}\n\n"
+
+  str
 end
 
 # get score, number of comments, and html from reddit post id

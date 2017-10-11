@@ -5,8 +5,7 @@
 </ul>
 
 <section class=tab-section>
-    <textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
-    <textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
+    <textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!\n| Liftoff currently scheduled for | |\n| --- | --- |\n| Weather | |\n| Static fire | |\n| Payload | |\n| Payload mass | |\n| Destination orbit | |\n| Vehicle | |\n| Core | |\n| Flights of this core | |\n| Launch site | |\n| Landing | |\n| Landing site | |".gsub("'", "&apos;") end %>'></textarea>
 </section>
 
 <section class=tab-events>
@@ -91,11 +90,12 @@
 </section>
 
 <section class=tab-section>
-    <textarea id=stats data-initial='<%= if session[:stats] then session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
-    <textarea id=mission data-initial='<%= if session[:mission] then session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
-    <textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
-    <textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
-    <textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
+    <textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else "### Watch the launch live\n| Stream | Courtesy |\n| --- | --- |".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=stats data-initial='<%= if session[:stats] then session[:stats].gsub("'", "&apos;") else "### Stats".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=mission data-initial='<%= if session[:mission] then session[:mission].gsub("'", "&apos;") else "### Primary Mission: Deployment of payload into correct orbit".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else "### Secondary Mission: Landing Attempt".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else "### Resources\n| Link | Source |\n| --- | --- |\n| [Official press kit](https://spacex.com/) | SpaceX |".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else "### Participate in the discussion!\n- First of all, launch threads are party threads! We understand everyone is excited, so we relax the rules in these venues. The most important thing is that everyone enjoy themselves\n -Please constrain the launch party to this thread alone. We will remove low effort comments elsewhere!\n- Real-time chat on our official Internet Relay Chat (IRC) [#spacex on Snoonet](https://kiwiirc.com/client/irc.snoonet.org/?nick=SpaceX_guest%7C?#SpaceX)\n- Please post small launch updates, discussions, and questions here, rather than as a separate post. Thanks!\n- Wanna talk about other SpaceX stuff in a more relaxed atmosphere? Head over to r/SpaceXLounge".gsub("'", "&apos;") end %>'></textarea>
 </section>
 
 <template id=event-template>
