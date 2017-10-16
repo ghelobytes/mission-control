@@ -15,7 +15,7 @@ export const request = {
             const query = [];
             for(const k in data)
                 query.push(`${encodeURIComponent(key)}=${encodeURIComponent(data[k])}`);
-            resp = await fetch(url + `?${query.join(`&`)}`, { method: `GET` });
+            resp = await fetch(`${url}?${query.join(`&`)}`, { method: `GET` });
         }
 
         return resp.ok ? Promise.resolve(await resp.text()) : Promise.reject({
